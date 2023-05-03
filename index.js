@@ -37,6 +37,13 @@ const chain = new SqlDatabaseChain({
   database: db,
 });
 
+app.get('/', (req, res)=> {
+
+
+  res.send("Hi there!")
+
+})
+
   app.post('/product_recommend', async (req, res) => {
   try {
   const { prompt } = req.body
