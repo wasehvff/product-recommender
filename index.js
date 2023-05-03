@@ -37,7 +37,7 @@ const chain = new SqlDatabaseChain({
   database: db,
 });
 
-app.post('/product_recommend', async (req, res) => {
+  app.post('/product_recommend', async (req, res) => {
   try {
   const { prompt } = req.body
   const result = await chain.run(prompt);
@@ -45,12 +45,16 @@ app.post('/product_recommend', async (req, res) => {
 
 
   res.json({ 
+  success: true,
   message : result
-})
+  })
 
-} catch (error) {
-res.json({error})       
-}
+  } catch (error) {
+  res.status(400).json({
+    success:false,
+    error : error.message
+  })       
+ }
 })
 
 app.listen(port, () => {
